@@ -123,7 +123,7 @@ const HEADER_TOOLTIPS: Record<string, { title: string; unit?: string; descriptio
   },
   Cys: {
     title: 'Cysteine & Free Thiol Status',
-    description: 'Total cysteine count and 3D disulfide pairing check (Sγ–Sγ ≤ 3.0 Å). Unpaired free thiol (Free: Yes) is flagged Intolerable (RED).'
+    description: 'Total cysteine count and 1-to-1 3D intra/inter-chain disulfide pairing check (Sγ–Sγ ≤ 3.5 Å, or relaxed Cβ–Cβ ≤ 5.0 Å & Sγ–Sγ ≤ 5.5 Å). Unpaired free thiol (Free: Yes) is flagged Intolerable (RED).'
   }
 };
 

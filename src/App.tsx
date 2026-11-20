@@ -241,15 +241,18 @@ export default function App() {
       }
       const zipPayload = btoa(chunks.join(''));
 
-      await axios.post('/api/submit', {
+      const submitPayload = {
         zipPayload,
         remoteBasePath,
         condaProfile,
         ibEnv,
         psaBin,
+        ptmRsaCutoff: parseFloat(ptmRsaCutoff) || 7.5,
         mode,
         projectId
-      });
+      };
+
+      await axios.post('/api/submit', submitPayload);
       toast.success('Job submitted successfully!');
       setActiveTab('tasks');
       setFiles([]);
@@ -264,19 +267,26 @@ export default function App() {
         const retryConnected = await connectSsh();
         if (retryConnected) {
           try {
-            const formData = new FormData();
-            files.forEach(f => {
-              formData.append('files', f);
-            });
-            formData.append('remoteBasePath', remoteBasePath);
-            formData.append('condaProfile', condaProfile);
-            formData.append('ibEnv', ibEnv);
-            formData.append('psaBin', psaBin);
-            formData.append('mode', mode);
-            formData.append('projectId', projectId);
-
-            await axios.post('/api/submit', formData, {
-              headers: { 'Content-Type': 'multipart/form-data' }
+            const zipDataRetry: Record<string, Uint8Array> = {};
+            for (const file of files) {
+              const buf = await file.arrayBuffer();
+              zipDataRetry[file.name] = new Uint8Array(buf);
+            }
+            const { zipSync } = await import('fflate');
+            const zippedRetry = zipSync(zipDataRetry);
+            const chunksRetry: string[] = [];
+            for (let i = 0; i < zippedRetry.length; i += 8192) {
+              chunksRetry.push(String.fromCharCode.apply(null, Array.from(zippedRetry.subarray(i, i + 8192))));
+            }
+            await axios.post('/api/submit', {
+              zipPayload: btoa(chunksRetry.join('')),
+              remoteBasePath,
+              condaProfile,
+              ibEnv,
+              psaBin,
+              ptmRsaCutoff: parseFloat(ptmRsaCutoff) || 7.5,
+              mode,
+              projectId
             });
             toast.success('Job submitted successfully!');
             setActiveTab('tasks');
@@ -674,7 +684,7 @@ export default function App() {
                     <InfoTooltip
                       title="Remote TAP 3D PDB Directory (远程单抗 3D 结构目录)"
                       description="SSH 集群上存放 TheraSAbDab 临床单抗 3D `.pdb` / `.cif` 结构文件的文件夹路径。"
-                      method="`TAP_2024_Batch.py` 会遍历该目录下的全部 3D 结构文件，执行 ANARCI IMGT 编号、3D DSSP 主链氢键二级结构计算、Joy PSA 侧链暴露度计算与 3D 半胱氨酸 Sγ–Sγ 二硫键配对检测（≤ 3.0 Å）。"
+                      method="`TAP_2024_Batch.py` 会遍历该目录下的全部 3D 结构文件，执行 ANARCI IMGT 编号（单域精确连续对齐）、3D Kabsch-Sander DSSP 主链氢键二级结构计算（Top-2 氢键限制）、Joy PSA 侧链暴露度计算、重叠 PTM 基序扫描与 1-to-1 3D 链内/跨链（ds-scFv）二硫键配对检测。"
                       example="例如：`/share/users/zengxin/data/TheraSAbDab_PDBs`。"
                     />
                   </label>

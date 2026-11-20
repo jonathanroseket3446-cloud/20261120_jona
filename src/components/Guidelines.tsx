@@ -1179,7 +1179,7 @@ function LiabilityGuidelinesSection({
                 ? '单独评估单抗轻链可变区（VL）的 4-Tier PTM 风险与 IMGT 热点分布。VL 的化学风险高度集中于 CDRL1（IMGT 27–36）以及 CDRL3（IMGT 107–115）的暴露环区位点。'
                 : '评估单域纳米抗体（VHH）的 4-Tier PTM 风险与 IMGT 热点分布。VHH 具有较长 CDR3 环且完全依靠单结构域结合抗原，任何暴露环区修饰或未配对游离 Cys 均直接影响活性。'
             }
-            method={`100% 基于 3D PDB 结构（ANARCI IMGT 区域划分 + 3D Kabsch-Sander DSSP 主链氢键二级结构 Loop/Strand 识别 + PSA 反应残基自身 side_rsa ≥ 7.5% 暴露判定），格式化为 ${selectedChain === 'VHVL' ? 'Chain:linearPos@IMGTpos(Motif)[Region-SecStruct,Exp/Buried]' : 'linearPos@IMGTpos(Motif)[Region-SecStruct,Exp/Buried]'}：\n• Tier 1 Intolerable (RED)：游离 Cys（3D Sγ–Sγ > 3.0 Å）或潜在 N-糖基化 Nx[ST] except for NP[ST]；\n• Tier 2 High Risk (RED)：NG & DG; exposed & in loops（${loopScopeTagText}）；\n• Tier 3 Moderate Risk (AMBER)：M, W, NS, NT, NN, NH, DS, DD; exposed & in loops（${loopScopeTagText}）；\n• Tier 4 Low Risk (L-GREEN)：未列入前述等级的其他 15 种 Nx（含 NP）与 17 种 Dx（含 DP, DT, DH）; exposed & in loops（${loopScopeTagText}）；\n• Protected 结构保护态 (D-GREEN)：位于 β-折叠股（[CDR-Strand] / [FR-Strand]）或内部包埋（[*,Buried]）的受保护残基。`}
+            method={`100% 基于 3D PDB 结构（ANARCI IMGT 区域划分 + 3D Kabsch-Sander DSSP Top-2 主链氢键二级结构 Loop/Strand 识别 + PSA 反应残基自身 side_rsa ≥ 7.5% 暴露判定 + 重叠基序扫描），格式化为 ${selectedChain === 'VHVL' ? 'Chain:linearPos@IMGTpos(Motif)[Region-SecStruct,Exp/Buried]' : 'linearPos@IMGTpos(Motif)[Region-SecStruct,Exp/Buried]'}：\n• Tier 1 Intolerable (RED)：游离 Cys（3D 1-to-1 链内/跨链二硫键未配对）或潜在 N-糖基化 Nx[ST] except for NP[ST]；\n• Tier 2 High Risk (RED)：NG & DG; exposed & in loops（${loopScopeTagText}）；\n• Tier 3 Moderate Risk (AMBER)：M, W, NS, NT, NN, NH, DS, DD; exposed & in loops（${loopScopeTagText}）；\n• Tier 4 Low Risk (L-GREEN)：未列入前述等级的其他 15 种 Nx（含 NP）与 17 种 Dx（含 DP, DT, DH）; exposed & in loops（${loopScopeTagText}）；\n• Protected 结构保护态 (D-GREEN)：位于 β-折叠股（[CDR-Strand] / [FR-Strand]）或内部包埋（[*,Buried]）的受保护残基。`}
             formula={
               selectedChain === 'VHVL'
                 ? `Sites(VHVL) = VH:Sites ∪ VL:Sites · Loop Scope: ${loopScopeTagText}`
@@ -1294,7 +1294,7 @@ function LiabilityGuidelinesSection({
               <tr>
                 <td className="py-2.5 px-4 font-bold text-rose-700">Tier 1 · Intolerable</td>
                 <td className="py-2.5 px-4 text-surface-700">Free Cys; N-glycosylation</td>
-                <td className="py-2.5 px-4 font-mono text-surface-800">C (unpaired Sγ–Sγ &gt; 3.0 Å); Nx[ST] except for NP[ST]</td>
+                <td className="py-2.5 px-4 font-mono text-surface-800">C (unpaired 1-to-1 3D disulfide); Nx[ST] except for NP[ST]</td>
                 <td className="py-2.5 px-4 font-mono text-rose-600 font-semibold">RED · Any position</td>
               </tr>
               <tr>
@@ -1342,12 +1342,12 @@ function LiabilityGuidelinesSection({
                   ? '统计仅在重链可变区（VH Chain）上携带未配对游离 Cys 或重链 N-糖基化位点（Nx[ST] except for NP[ST]）的抗体占比。'
                   : selectedChain === 'VL'
                   ? '统计仅在轻链可变区（VL Chain）上携带未配对游离 Cys 或轻链 N-糖基化位点（Nx[ST] except for NP[ST]）的抗体占比。'
-                  : '统计单域纳米抗体（VHH）中携带未配对游离 Cys（成对二硫键 Sγ–Sγ ≤ 3.0 Å 不计入风险）或可变区 N-糖基化位点的比例。'
+                  : '统计单域纳米抗体（VHH）中携带未配对游离 Cys（3D 1-to-1 成对核心/跨环二硫键不计入风险）或可变区 N-糖基化位点的比例。'
               }
               method={
                 selectedChain === 'VHVL'
-                  ? '对每株抗体的 VH 与 VL 进行联合判定：只要 VH 或 VL 任一链存在 3D 未配对游离 Cys（Free: Yes）或 Count(N[^P][ST]) > 0，该抗体即计入 Whole Fv 的 Tier 1 Intolerable 分子数。'
-                  : `扫描 ${chainLabelText} 3D 结构与序列：(1) 3D 结构中存在未配对游离半胱氨酸（Sγ–Sγ > 3.0 Å）；或 (2) 序列中存在 N[^P][ST] 糖基化三肽基序。`
+                  ? '对每株抗体的 VH 与 VL 进行联合判定（含跨链 ds-scFv 二硫键识别）：只要经 3D 严格 1-to-1 配对后仍存在未配对游离 Cys（Free: Yes）或 Count(N[^P][ST]) > 0，该抗体即计入 Whole Fv 的 Tier 1 Intolerable 分子数。'
+                  : `扫描 ${chainLabelText} 3D 结构与序列：(1) 经 3D 严格 1-to-1 链内/跨链二硫键配对（Sγ–Sγ ≤ 3.5 Å 或 Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å）后仍存在未配对游离半胱氨酸；或 (2) 序列中存在重叠扫描检出的 N[^P][ST] 糖基化三肽基序。`
               }
               formula={
                 selectedChain === 'VHVL'

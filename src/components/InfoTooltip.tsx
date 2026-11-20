@@ -959,49 +959,49 @@ export const METRIC_META: Record<string, MetricMetaItem> = {
     label: 'VH+VL (Whole Fv) · Combined Cysteine & Free Thiol Status (双链 Fv 半胱氨酸配对状态)',
     shortLabel: 'VHVL Cys',
     summary:
-      '汇总双链 Fv（重链 VH + 轻链 VL）的半胱氨酸（Cys, C）总数及游离巯基（Free Cys）状态。标准单抗 Fv 共含有 4 个保守 Cys（VH 的 `IMGT Cys23–Cys104` 一对链内二硫键 + VL 的 `IMGT Cys23–Cys104` 一对链内二硫键）。若任意一链存在未配对的游离 Cys（`Free: Yes`），即触发 **Tier 1 Intolerable（RED）** 警报。',
+      '汇总双链 Fv（重链 VH + 轻链 VL）的半胱氨酸（Cys, C）总数及游离巯基（Free Cys）状态。标准单抗 Fv 共含有 4 个保守 Cys（VH 与 VL 各一对 `IMGT Cys23–Cys104` 链内二硫键）；工程化 ds-scFv（如 `VH IMGT49 ↔ VL IMGT120`）还可能含有跨链稳定二硫键（共 6 个成对 Cys）。仅当经 3D 严格 1-to-1 链内+跨链配对后仍存在未配对游离 Cys（`Free: Yes`）时，才触发 **Tier 1 Intolerable（RED）** 警报。',
     method:
-      '将 VH 与 VL 的 Cys 计数相加，并检查两链是否存在经 3D 晶体/建模结构 Sγ–Sγ 原子距离（> 3.0 Å，或无 Sγ 时 Cβ–Cβ > 4.5 Å）判定的未配对游离 Cys。若有游离 Cys，直接输出其带链前缀的精确位点标签。',
+      '对完整 Fv 的 VH 与 VL 全部 Cys 执行严格 1-to-1 最大基数最小距离匹配（同时识别链内与 VH–VL 跨链二硫键）：满足 Sγ–Sγ ≤ 3.5 Å，或弛豫容差（Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å），缺 Sγ 时 Cβ–Cβ ≤ 4.8 Å，及同链保守 IMGT 23–104 结合 Cα–Cα ≤ 7.5 Å 复核均判为成对二硫键。未配对者标为 `Free: Yes`。',
     formula:
-      'VHVL_Cys = Count(C_VH) + Count(C_VL);   Flag: Free: Yes → Tier 1 RED, Free: No → D-GREEN',
+      '1-to-1 Match(VH ∪ VL): d(Sγ) ≤ 3.5 Å ∨ (d(Cβ) ≤ 5.0 Å ∧ d(Sγ) ≤ 5.5 Å);   Unpaired → Tier 1 RED',
     example:
-      '• 标准正常示例：`4 (Free: No)`（VH 2 个 + VL 2 个全部形成链内二硫键，标为 D-GREEN）；\n• 游离风险示例：`5 (Free: Yes @ VH:102@IMGT110(C)[CDR-Loop,Exp])`（重链 CDRH3 含 1 个未配对暴露 Cys，标为 Tier 1 RED）。'
+      '• 标准正常示例：`4 (Free: No)`（VH 与 VL 链内二硫键全部闭合，标为 D-GREEN）；\n• 工程化 ds-scFv 示例：`6 (Free: No; Inter-chain: VH:44@IMGT49(C)-VL:100@IMGT120(C))`（跨链二硫键正确配对，标为 D-GREEN）；\n• 游离风险示例：`5 (Free: Yes @ VH:102@IMGT110(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
   },
   VH_Cys: {
     label: 'VH Chain · Heavy Chain Cysteine & Disulfide Status (重链半胱氨酸与二硫键状态)',
     shortLabel: 'VH Cys',
     summary:
-      '评估重链可变区（VH）内半胱氨酸（Cys, C）总数及 3D 二硫键配对完整性。标准 VH 含有 2 个保守 Cys（位于 FR1 Strand B 的 `IMGT Cys23` 与 FR3 Strand F 末端的 `IMGT Cys104`）形成核心链内二硫键；部分含长 CDRH3 的人源抗体（如 IGHV 搭载 IGHD2 基因片段）可在 CDRH3 内部形成第 2 对链内二硫键（共 4 个配对 Cys）。一旦出现未配对的游离 Cys，属于 **Tier 1 Intolerable（RED）**。',
+      '评估重链可变区（VH）内半胱氨酸（Cys, C）总数及 3D 二硫键配对完整性。标准 VH 含有 2 个保守 Cys（`IMGT Cys23` 与 `IMGT Cys104`）；部分长 CDRH3 抗体可在 CDRH3 内部形成第 2 对链内二硫键（共 4 个配对 Cys）；工程化 ds-scFv 重链还可能与 VL 形成跨链二硫键（如 `IMGT49 ↔ VL IMGT120`）。一旦存在未配对游离 Cys，属于 **Tier 1 Intolerable（RED）**。',
     method:
-      '在 3D 结构中计算 VH 链内所有 Cys 残基对之间的 Sγ–Sγ 原子距离（若无 Sγ 则计算 Cβ–Cβ 距离）：若某 Cys 与链内其他任何 Cys 的 d(Sγ–Sγ) 均 > 3.0 Å（且 d(Cβ–Cβ) > 4.5 Å），则判定为未配对游离巯基并输出其精确坐标（含 IMGT 编号、3D DSSP 二级结构与 PSA 暴露状态）。',
+      '在完整 Fv 3D 结构中执行严格 1-to-1 二硫键配对（组合几何判据：Sγ–Sγ ≤ 3.5 Å，或 Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å，缺 Sγ 时 Cβ–Cβ ≤ 4.8 Å，同链 23–104 支持 Cα–Cα ≤ 7.5 Å 复核），同时支持链内与 VH–VL 跨链二硫键。未配对者判定为游离巯基并输出精确 3D 坐标。',
     formula:
-      'Paired if ∃ Cys_j ∈ VH: d(Sγ_i, Sγ_j) ≤ 3.0 Å;   Unpaired → Free: Yes @ pos@IMGT(C)[Region,Exp] (RED)',
+      '1-to-1 Paired (Intra-VH or Inter-VH/VL): d(Sγ) ≤ 3.5 Å ∨ (d(Cβ) ≤ 5.0 Å ∧ d(Sγ) ≤ 5.5 Å);   Unpaired → Tier 1 RED',
     example:
-      '• 标准二硫键：`2 (Free: No)`（IMGT Cys23 与 Cys104 配对，d(Sγ–Sγ) ≈ 2.04 Å，标为 D-GREEN）；\n• 双二硫键正常配对：`4 (Free: No)`（Cys23–Cys104 + CDRH3 内部一对二硫键，标为 D-GREEN）；\n• 游离巯基高危：`3 (Free: Yes @ 102@IMGT110(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
+      '• 标准二硫键：`2 (Free: No)`（IMGT Cys23–Cys104 配对，标为 D-GREEN）；\n• 双二硫键正常配对：`4 (Free: No)`（Cys23–Cys104 + CDRH3 内部二硫键，标为 D-GREEN）；\n• ds-scFv 跨链配对：`3 (Free: No; Inter-chain: 44@IMGT49(C)-VL:100@IMGT120(C))`（标为 D-GREEN）；\n• 游离巯基高危：`3 (Free: Yes @ 102@IMGT110(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
   },
   VL_Cys: {
     label: 'VL Chain · Light Chain Cysteine & Disulfide Status (轻链半胱氨酸与二硫键状态)',
     shortLabel: 'VL Cys',
     summary:
-      '评估轻链可变区（VL）内半胱氨酸（Cys, C）总数及 3D 二硫键配对完整性。标准人源 κ 和 λ 轻链可变区严格只含 2 个保守 Cys（`IMGT Cys23` 与 `IMGT Cys104`）。轻链 CDR 区（如 CDRL1/L3）极少出现成对附加二硫键，一旦多出 Cys（如总数 = 3），几乎 100% 为高危游离巯基（如经典案例 Adalimumab/Palivizumab 工程筛查中需规避的轻链游离 Cys），属于 **Tier 1 Intolerable（RED）**。',
+      '评估轻链可变区（VL）内半胱氨酸（Cys, C）总数及 3D 二硫键配对完整性。标准人源 κ 和 λ 轻链可变区含 2 个保守 Cys（`IMGT Cys23` 与 `IMGT Cys104`）；工程化 ds-scFv 轻链常在 `IMGT 120`（Kabat L100）引入第 3 个 Cys 与重链 `IMGT 49` 形成跨链二硫键。除成对链内/跨链二硫键外，任何孤立游离 Cys 均属于 **Tier 1 Intolerable（RED）**。',
     method:
-      '在 3D 结构中计算 VL 链内所有 Cys 的 Sγ–Sγ 距离（≤ 3.0 Å 视为配对），检出未配对 Cys 即标注 `Free: Yes @ pos@IMGT(C)[Region,Exp]` 并标为 **RED**。',
+      '在完整 Fv 3D 结构中执行严格 1-to-1 二硫键配对（Sγ–Sγ ≤ 3.5 Å，或 Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å，缺 Sγ 时 Cβ–Cβ ≤ 4.8 Å，同链 23–104 支持 Cα–Cα ≤ 7.5 Å），同时识别 VL 链内与 VH–VL 跨链二硫键；未配对者标为 `Free: Yes`（**RED**）。',
     formula:
-      'Paired if ∃ Cys_j ∈ VL: d(Sγ_i, Sγ_j) ≤ 3.0 Å;   Unpaired → Tier 1 RED',
+      '1-to-1 Paired (Intra-VL or Inter-VH/VL): d(Sγ) ≤ 3.5 Å ∨ (d(Cβ) ≤ 5.0 Å ∧ d(Sγ) ≤ 5.5 Å);   Unpaired → Tier 1 RED',
     example:
-      '• 标准正常示例：`2 (Free: No)`（轻链 Cys23–Cys104 正常配对，标为 D-GREEN）；\n• 游离风险示例：`3 (Free: Yes @ 91@IMGT107(C)[CDR-Loop,Exp])`（CDRL3 含游离 Cys，标为 Tier 1 RED）。'
+      '• 标准正常示例：`2 (Free: No)`（轻链 Cys23–Cys104 正常配对，标为 D-GREEN）；\n• ds-scFv 跨链配对：`3 (Free: No; Inter-chain: 100@IMGT120(C)-VH:44@IMGT49(C))`（标为 D-GREEN）；\n• 游离风险示例：`3 (Free: Yes @ 91@IMGT107(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
   },
   VHH_Cys: {
     label: 'VHH Domain · Nanobody Cysteine & Disulfide Status (纳米抗体半胱氨酸与非典型二硫键)',
     shortLabel: 'VHH Cys',
     summary:
-      '评估单域纳米抗体（VHH）内半胱氨酸总数及二硫键配对状态。除了所有免疫球蛋白保守的 `IMGT Cys23–Cys104` 核心二硫键外，很大一部分天然驼源/羊驼源 VHH 会在 **CDR1（常见于 IMGT 35–38）或 FR2（IMGT 50/55）与长 CDR3 环之间形成第 2 对跨环非典型二硫键（Inter-loop Disulfide Bond，共 4 个配对 Cys）**，用于锚定长 CDR3 构象并大幅提升热稳定性；但若存在未配对的第 3 或第 5 个游离 Cys，则属于 **Tier 1 Intolerable（RED）**。',
+      '评估单域纳米抗体（VHH）内半胱氨酸总数及二硫键配对状态。除了保守的 `IMGT Cys23–Cys104` 核心二硫键外，许多天然驼源/羊驼源 VHH 会在 **CDR1（IMGT 35–38）或 FR2（IMGT 50/55）与长 CDR3 环之间形成第 2 对跨环非典型二硫键（共 4 个配对 Cys）**；若存在未配对的游离 Cys，则属于 **Tier 1 Intolerable（RED）**。',
     method:
-      '在 3D 结构中通过 Sγ–Sγ 距离（≤ 3.0 Å）精确检验每一对二硫键（包括 Cys23–Cys104 核心二硫键与 CDR1/FR2–CDR3 跨环二硫键）是否完整闭合。全部配对标为 **D-GREEN**，存在孤立游离 Cys 标为 **RED**。',
+      '在 3D 结构中执行严格 1-to-1 二硫键配对（Sγ–Sγ ≤ 3.5 Å，或 Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å，缺 Sγ 时 Cβ–Cβ ≤ 4.8 Å，保守 23–104 支持 Cα–Cα ≤ 7.5 Å 复核），精确检验每一对核心及跨环二硫键是否闭合。全部配对标为 **D-GREEN**，存在孤立游离 Cys 标为 **RED**。',
     formula:
-      '2 (Canonical C23–C104) or 4 (Canonical + Inter-loop C_CDR1–C_CDR3) with d(Sγ–Sγ) ≤ 3.0 Å → Free: No (D-GREEN)',
+      '1-to-1 Match(VHH): d(Sγ) ≤ 3.5 Å ∨ (d(Cβ) ≤ 5.0 Å ∧ d(Sγ) ≤ 5.5 Å) → Free: No (D-GREEN)',
     example:
-      '• 单二硫键 VHH：`2 (Free: No)`（D-GREEN）；\n• 含跨环二硫键 VHH：`4 (Free: No)`（Cys23–Cys104 + CDR1 Cys38–CDR3 Cys111.2 正常配对，标为 D-GREEN）；\n• 游离巯基 VHH：`3 (Free: Yes @ 108@IMGT112(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
+      '• 单二硫键 VHH：`2 (Free: No)`（D-GREEN）；\n• 含跨环二硫键 VHH：`4 (Free: No)`（Cys23–Cys104 + CDR1/FR2–CDR3 跨环二硫键正常配对，标为 D-GREEN）；\n• 游离巯基 VHH：`3 (Free: Yes @ 108@IMGT112(C)[CDR-Loop,Exp])`（标为 Tier 1 RED）。'
   },
 
   // ============================================================================

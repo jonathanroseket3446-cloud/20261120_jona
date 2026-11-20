@@ -428,18 +428,35 @@ function computeChainLiabilityStatsCore(
         let hasModLoopIsom = false;
         let hasLow = false;
 
+        // For Whole Fv (VHVL), check explicit VHVL_Cys 3D status first if present (handles inter-chain VH-VL ds-scFv disulfides)
+        const vhvlCysCol = chainKey === 'VHVL' ? String(r['VHVL_Cys'] || r['VHVL_Cys_Value'] || '') : '';
+        const vhvlHasExplicit3dCys = chainKey === 'VHVL' && (vhvlCysCol.includes('Free: Yes') || vhvlCysCol.includes('Free: No'));
+        if (vhvlHasExplicit3dCys && vhvlCysCol.includes('Free: Yes')) {
+            hasFreeCys = true;
+            hasIntolerable = true;
+            const ms = ensureMotif('Free Cys (C)', 'Free Cys', 'Intolerable (Free Cys)');
+            ms.cdrExpAntibodies.add(rowIdx);
+            ms.totalOccurrences++;
+            ms.cdrExpOccurrences++;
+        }
+
         for (const c of chainsToScan) {
             const seqCol = c === 'VHH' ? (r['VH'] || r['VHH'] || '') : (r[c] || '');
             const seq = String(seqCol).trim().toUpperCase().replace(/[^ACDEFGHIKLMNPQRSTVWY]/g, '');
-            const cysCol = String(r[`${c}_Cys`] || r[`${c}_Cys_Value`] || '');
-            const cysOdd = cysCol.includes('Free: Yes') || (seq.length > 0 && (seq.split('C').length - 1) % 2 !== 0);
-            if (cysOdd) {
-                hasFreeCys = true;
-                hasIntolerable = true;
-                const ms = ensureMotif('Free Cys (C)', 'Free Cys', 'Intolerable (Free Cys)');
-                ms.cdrExpAntibodies.add(rowIdx);
-                ms.totalOccurrences++;
-                ms.cdrExpOccurrences++;
+            if (!vhvlHasExplicit3dCys) {
+                const cysCol = String(r[`${c}_Cys`] || r[`${c}_Cys_Value`] || '');
+                const has3dCys = cysCol.includes('Free: Yes') || cysCol.includes('Free: No');
+                const isFreeCys = has3dCys
+                    ? cysCol.includes('Free: Yes')
+                    : (seq.length > 0 && (seq.split('C').length - 1) % 2 !== 0);
+                if (isFreeCys) {
+                    hasFreeCys = true;
+                    hasIntolerable = true;
+                    const ms = ensureMotif('Free Cys (C)', 'Free Cys', 'Intolerable (Free Cys)');
+                    ms.cdrExpAntibodies.add(rowIdx);
+                    ms.totalOccurrences++;
+                    ms.cdrExpOccurrences++;
+                }
             }
 
             const imgtTokens = seq ? assignImgtTokensFromSeq(seq, c) : [];

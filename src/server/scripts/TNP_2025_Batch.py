@@ -70,13 +70,19 @@ def assign_3d_secondary_structure(chain_residues):
         if res_name == 'PRO' or coords_N[i] is None:
             continue
         if coords_C[i - 1] is not None and coords_O[i - 1] is not None:
+            if np.linalg.norm(coords_N[i] - coords_C[i - 1]) > 2.5:
+                continue
             co_vec = coords_C[i - 1] - coords_O[i - 1]
             norm = np.linalg.norm(co_vec)
             if norm > 1e-6:
                 coords_H[i] = coords_N[i] + 1.01 * (co_vec / norm)
 
-    hbond = np.zeros((n, n), dtype=bool)
+    # Kabsch-Sander H-bond matrix: hbond[donor_i (N-H), acceptor_j (C=O)] = True
+    # Standard DSSP Top-2 rule: each N-H donor and C=O acceptor retains at most
+    # the 2 lowest-energy H-bonds with E < -0.5 kcal/mol.
     q1q2_f = 0.42 * 0.20 * 332.0
+    donor_hbonds = [[] for _ in range(n)]
+    acceptor_hbonds = [[] for _ in range(n)]
 
     for i in range(1, n):
         if coords_N[i] is None or coords_H[i] is None:
@@ -98,18 +104,39 @@ def assign_3d_secondary_structure(chain_residues):
                 continue
             energy = q1q2_f * (1.0 / r_on + 1.0 / r_ch - 1.0 / r_oh - 1.0 / r_cn)
             if energy < -0.5:
-                hbond[i, j] = True
+                donor_hbonds[i].append((energy, j))
+                acceptor_hbonds[j].append((energy, i))
+
+    donor_top2 = set()
+    for i in range(n):
+        if donor_hbonds[i]:
+            donor_hbonds[i].sort(key=lambda x: x[0])
+            for _, j in donor_hbonds[i][:2]:
+                donor_top2.add((i, j))
+
+    acceptor_top2 = set()
+    for j in range(n):
+        if acceptor_hbonds[j]:
+            acceptor_hbonds[j].sort(key=lambda x: x[0])
+            for _, i in acceptor_hbonds[j][:2]:
+                acceptor_top2.add((i, j))
+
+    hbond = np.zeros((n, n), dtype=bool)
+    for (i, j) in donor_top2.intersection(acceptor_top2):
+        hbond[i, j] = True
 
     is_strand_or_helix = [False] * n
 
+    # Parallel and Antiparallel Beta-Bridges (Kabsch & Sander 1983)
+    # Note: Kabsch-Sander Bond(acceptor, donor) == hbond[donor, acceptor].
     for i in range(1, n - 1):
         for j in range(1, n - 1):
             if abs(i - j) < 3:
                 continue
-            par1 = hbond[i - 1, j] and hbond[j, i + 1]
-            par2 = hbond[j - 1, i] and hbond[i, j + 1]
-            anti1 = hbond[i, j] and hbond[j, i]
-            anti2 = hbond[i - 1, j + 1] and hbond[j - 1, i + 1]
+            par1 = hbond[j, i - 1] and hbond[i + 1, j]
+            par2 = hbond[i, j - 1] and hbond[j + 1, i]
+            anti1 = hbond[j, i] and hbond[i, j]
+            anti2 = hbond[j + 1, i - 1] and hbond[i + 1, j - 1]
             if par1 or par2 or anti1 or anti2:
                 is_strand_or_helix[i] = True
                 is_strand_or_helix[j] = True
@@ -183,9 +210,9 @@ def format_site_token(pos, motif, chain_residues, ptm_rsa_cutoff=7.5):
 
 def predict_n_glycosylation_sites(sequence, chain_residues, ptm_rsa_cutoff=7.5):
     glycosylation_sites = []
-    for match in re.finditer(r'N[^P][ST]', sequence):
+    for match in re.finditer(r'(?=(N[^P][ST]))', sequence):
         position = match.start() + 1
-        residue = sequence[max(0, match.start()):match.start() + 3]
+        residue = match.group(1)
         glycosylation_sites.append(
             format_site_token(position, residue, chain_residues, ptm_rsa_cutoff)
         )
@@ -194,9 +221,9 @@ def predict_n_glycosylation_sites(sequence, chain_residues, ptm_rsa_cutoff=7.5):
 
 def find_deamidation_sites(sequence, chain_residues, ptm_rsa_cutoff=7.5):
     sites = []
-    for match in re.finditer(r'N[ACDEFGHIKLMNPQRSTVWY]', sequence):
+    for match in re.finditer(r'(?=(N[ACDEFGHIKLMNPQRSTVWY]))', sequence):
         position = match.start() + 1
-        motif = match.group()
+        motif = match.group(1)
         token, _, is_loop, is_exp = evaluate_site_state(position, motif, chain_residues, ptm_rsa_cutoff)
         if motif in CORE_DEAMIDATION_MOTIFS:
             sites.append(token)
@@ -207,9 +234,9 @@ def find_deamidation_sites(sequence, chain_residues, ptm_rsa_cutoff=7.5):
 
 def find_isomerization_sites(sequence, chain_residues, ptm_rsa_cutoff=7.5):
     sites = []
-    for match in re.finditer(r'D[ACDEFGHIKLMNPQRSTVWY]', sequence):
+    for match in re.finditer(r'(?=(D[ACDEFGHIKLMNPQRSTVWY]))', sequence):
         position = match.start() + 1
-        motif = match.group()
+        motif = match.group(1)
         token, _, is_loop, is_exp = evaluate_site_state(position, motif, chain_residues, ptm_rsa_cutoff)
         if motif in CORE_ISOMERIZATION_MOTIFS:
             sites.append(token)
@@ -229,42 +256,137 @@ def find_ptm_sites(sequence, pattern, chain_residues, ptm_rsa_cutoff=7.5):
     return ', '.join(sites) if sites else "None"
 
 
+def _extract_cys_entries(sequence, chain_residues, chain_tag='VHH'):
+    entries = []
+    for m in re.finditer(r'C', sequence):
+        pos = m.start() + 1
+        idx = pos - 1
+        res = chain_residues[idx] if (chain_residues is not None and 0 <= idx < len(chain_residues)) else None
+        sg = np.array(res['SG'].get_coord(), dtype=float) if (res is not None and 'SG' in res) else None
+        cb = np.array(res['CB'].get_coord(), dtype=float) if (res is not None and 'CB' in res) else None
+        ca = np.array(res['CA'].get_coord(), dtype=float) if (res is not None and 'CA' in res) else None
+        imgt_num = res.xtra.get('imgt_num') if res is not None else None
+        entries.append({
+            'chain': chain_tag,
+            'pos': pos,
+            'imgt_num': imgt_num,
+            'sg': sg,
+            'cb': cb,
+            'ca': ca
+        })
+    return entries
+
+
+def _disulfide_pair_distance(a, b):
+    """
+    Combined 3D geometric disulfide-bond criterion resilient to NanoBodyBuilder2/OpenMM
+    unbonded relaxation while preserving strict stereochemical specificity:
+      1. Both SG present: SG-SG <= 3.5 A; OR (CB-CB <= 5.0 A and SG-SG <= 5.5 A);
+         OR canonical IMGT 23-104 with CA-CA <= 7.5 A.
+      2. SG missing on either residue, both CB present: CB-CB <= 4.8 A;
+         OR canonical IMGT 23-104 with CA-CA <= 7.5 A.
+      3. Only CA present: canonical IMGT 23-104 with CA-CA <= 7.5 A.
+    """
+    d_sg = float(np.linalg.norm(a['sg'] - b['sg'])) if (a['sg'] is not None and b['sg'] is not None) else None
+    d_cb = float(np.linalg.norm(a['cb'] - b['cb'])) if (a['cb'] is not None and b['cb'] is not None) else None
+    d_ca = float(np.linalg.norm(a['ca'] - b['ca'])) if (a['ca'] is not None and b['ca'] is not None) else None
+    is_canonical_23_104 = ({a['imgt_num'], b['imgt_num']} == {23, 104})
+
+    if d_sg is not None:
+        if d_sg <= 3.5:
+            return d_sg
+        if d_cb is not None and d_cb <= 5.0 and d_sg <= 5.5:
+            return d_sg
+        if is_canonical_23_104 and d_ca is not None and d_ca <= 7.5:
+            return d_sg
+        return None
+
+    if d_cb is not None:
+        if d_cb <= 4.8:
+            return d_cb
+        if is_canonical_23_104 and d_ca is not None and d_ca <= 7.5:
+            return d_cb
+        return None
+
+    if is_canonical_23_104 and d_ca is not None and d_ca <= 7.5:
+        return d_ca
+    return None
+
+
+def match_disulfides_1to1(cys_entries):
+    m = len(cys_entries)
+    if m < 2:
+        return []
+
+    adj = [[] for _ in range(m)]
+    edges = []
+    for i in range(m):
+        for j in range(i + 1, m):
+            dist = _disulfide_pair_distance(cys_entries[i], cys_entries[j])
+            if dist is not None:
+                adj[i].append((j, dist))
+                adj[j].append((i, dist))
+                edges.append((dist, i, j))
+
+    if not edges:
+        return []
+
+    if m <= 16:
+        memo = {}
+
+        def solve(mask):
+            if mask in memo:
+                return memo[mask]
+            first = -1
+            for i in range(m):
+                if not (mask & (1 << i)):
+                    first = i
+                    break
+            if first == -1:
+                res = (0, 0.0, ())
+                memo[mask] = res
+                return res
+
+            best = solve(mask | (1 << first))
+            for j, dist in adj[first]:
+                if not (mask & (1 << j)):
+                    sub_cnt, sub_dist, sub_pairs = solve(mask | (1 << first) | (1 << j))
+                    cand = (sub_cnt + 1, sub_dist + dist, ((first, j, dist),) + sub_pairs)
+                    if cand[0] > best[0] or (cand[0] == best[0] and cand[1] < best[1] - 1e-9):
+                        best = cand
+            memo[mask] = best
+            return best
+
+        _, _, best_pairs = solve(0)
+        return list(best_pairs)
+
+    edges.sort(key=lambda x: x[0])
+    used = set()
+    pairs = []
+    for dist, i, j in edges:
+        if i not in used and j not in used:
+            used.add(i)
+            used.add(j)
+            pairs.append((i, j, dist))
+    return pairs
+
+
 def check_free_cysteine(sequence, chain_residues, ptm_rsa_cutoff=7.5):
-    c_positions = [m.start() + 1 for m in re.finditer(r'C', sequence)]
-    cys_count = len(c_positions)
+    entries = _extract_cys_entries(sequence, chain_residues, 'VHH')
+    cys_count = len(entries)
     if cys_count == 0:
         return "0 (Free: No)"
 
-    cys_coords = []
-    for pos in c_positions:
-        idx = pos - 1
-        coord = None
-        if chain_residues is not None and 0 <= idx < len(chain_residues):
-            res = chain_residues[idx]
-            if 'SG' in res:
-                coord = res['SG'].get_coord()
-            elif 'CB' in res:
-                coord = res['CB'].get_coord()
-        cys_coords.append((pos, coord))
-
-    paired_positions = set()
-    for i in range(len(cys_coords)):
-        pos_i, coord_i = cys_coords[i]
-        if coord_i is None:
-            continue
-        for j in range(i + 1, len(cys_coords)):
-            pos_j, coord_j = cys_coords[j]
-            if coord_j is None:
-                continue
-            dist = float(np.linalg.norm(coord_i - coord_j))
-            if dist <= 3.0:
-                paired_positions.add(pos_i)
-                paired_positions.add(pos_j)
+    pairs = match_disulfides_1to1(entries)
+    paired_indices = set()
+    for i, j, _ in pairs:
+        paired_indices.add(i)
+        paired_indices.add(j)
 
     free_tokens = []
-    for pos, _ in cys_coords:
-        if pos not in paired_positions:
-            tok = format_site_token(pos, 'C', chain_residues, ptm_rsa_cutoff)
+    for idx, entry in enumerate(entries):
+        if idx not in paired_indices:
+            tok = format_site_token(entry['pos'], 'C', chain_residues, ptm_rsa_cutoff)
             free_tokens.append(tok)
 
     if free_tokens:
@@ -328,9 +450,14 @@ def process_single_structure(file_path, psa_bin, ptm_rsa_cutoff=7.5):
         mapping = []
         h_count, l_count = 0, 0
         for line in result.stdout.splitlines():
-            if line.startswith("#") or line.startswith("//") or not line.strip():
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
                 continue
-            parts = line.split()
+            if stripped.startswith("//"):
+                if mapping:
+                    break
+                continue
+            parts = stripped.split()
             if len(parts) >= 3 and parts[0] in ['H', 'K', 'L']:
                 c_type = 'H' if parts[0] == 'H' else 'L'
                 if c_type == 'H':
@@ -351,19 +478,20 @@ def process_single_structure(file_path, psa_bin, ptm_rsa_cutoff=7.5):
         else:
             model.detach_child(chain.id)
             continue
-        ptr = 0
-        mapped_indices = []
-        for m in mapping:
-            while ptr < len(seq) and seq[ptr] != m[2]:
-                ptr += 1
-            if ptr < len(seq):
-                mapped_indices.append(ptr)
-                ptr += 1
-            else:
-                break
-        for m, idx in zip(mapping, mapped_indices):
-            residues[idx].xtra['imgt_num'] = m[0]
-            residues[idx].xtra['imgt_label'] = m[1]
+
+        anarci_seq = "".join(m[2] for m in mapping)
+        start_idx = seq.find(anarci_seq)
+        if start_idx == -1:
+            pattern_str = "".join(f"[{re.escape(m[2])}X]" for m in mapping)
+            match_sub = re.search(pattern_str, seq)
+            if match_sub:
+                start_idx = match_sub.start()
+        if start_idx == -1:
+            raise ValueError(f"ANARCI domain sequence could not be contiguously aligned to chain {chain.id}")
+
+        for offset, m in enumerate(mapping):
+            residues[start_idx + offset].xtra['imgt_num'] = m[0]
+            residues[start_idx + offset].xtra['imgt_label'] = m[1]
 
         assign_3d_secondary_structure(residues)
 
@@ -432,9 +560,9 @@ def process_single_structure(file_path, psa_bin, ptm_rsa_cutoff=7.5):
             r1, r2 = vicinity_list[i], vicinity_list[j]
             c1, c2 = [a.coord for a in r1], [a.coord for a in r2]
             if c1 and c2:
-                r12 = np.min(cdist(c1, c2))
-                if r12 < 7.5:
-                    r12_sq = r12 ** 2
+                r12 = float(np.min(cdist(c1, c2)))
+                if 1e-6 < r12 < 7.5:
+                    r12_sq = max(r12, 0.1) ** 2
                     psh += (patch_properties[r1]['H'] * patch_properties[r2]['H']) / r12_sq
                     q1, q2 = patch_properties[r1]['Q'], patch_properties[r2]['Q']
                     if q1 > 0 and q2 > 0:
@@ -462,6 +590,22 @@ def process_single_structure(file_path, psa_bin, ptm_rsa_cutoff=7.5):
     }
 
 
+def _clean_aa(seq):
+    return re.sub(r'[^ACDEFGHIKLMNPQRSTVWY]', '', (seq or '').strip().upper())
+
+
+def check_seq_compatibility(new_seq, ref_seq, max_trim=6):
+    ns = _clean_aa(new_seq)
+    rs = _clean_aa(ref_seq)
+    if not rs or ns == rs:
+        return 'EXACT', ''
+    short_s, long_s = (ns, rs) if len(ns) < len(rs) else (rs, ns)
+    diff = len(long_s) - len(short_s)
+    if short_s and diff <= max_trim and short_s in long_s:
+        return 'TRIMMED', f"terminal trim diff={diff}aa (new={len(ns)}aa vs ref={len(rs)}aa)"
+    return 'MISMATCH', f"sequence mismatch (new={len(ns)}aa vs ref={len(rs)}aa)"
+
+
 def load_ref_metadata(ref_csv_path):
     meta_by_name = {}
     meta_by_seq = {}
@@ -471,14 +615,14 @@ def load_ref_metadata(ref_csv_path):
         with open(ref_csv_path, 'r', encoding='utf-8-sig') as f:
             for row in csv.DictReader(f):
                 fn = (row.get('Filename') or '').strip()
-                vh = (row.get('VH') or '').strip().upper()
+                vh = _clean_aa(row.get('VH') or '')
                 if fn:
                     stem = os.path.splitext(fn)[0]
                     meta_by_name[fn] = row
                     meta_by_name[stem] = row
                     meta_by_name[stem.lower()] = row
                 if vh:
-                    meta_by_seq[vh] = row
+                    meta_by_seq.setdefault(vh, []).append(row)
     except Exception:
         pass
     return meta_by_name, meta_by_seq
@@ -503,6 +647,7 @@ def main():
     parser.add_argument("--output", "-o", help="Output CSV path (default: <input_dir>/result/Analysis_Results_TNP.csv)")
     parser.add_argument("--psa_bin", default="psa", help="Path to Joy 'psa' executable (default: psa)")
     parser.add_argument("--ref_csv", default="", help="Optional existing Analysis_Results_TNP.csv to auto-merge clinical & Genetics metadata")
+    parser.add_argument("--strict_ref", action="store_true", help="Abort if any --ref_csv name match fails VHH sequence consistency validation")
     parser.add_argument("--ptm_rsa_cutoff", type=float, default=7.5, help="Side-chain RSA (%%) cutoff for surface exposure (default: 7.5)")
     parser.add_argument("--workers", "-j", type=int, default=max(1, min(8, os.cpu_count() or 1)), help="Number of parallel CPU worker processes")
     args = parser.parse_args()
@@ -570,6 +715,7 @@ def main():
 
     success_count = 0
     fail_count = 0
+    strict_ref_errors = []
     with open(args.output, 'w', newline='', encoding='utf-8') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(headers)
@@ -579,13 +725,36 @@ def main():
             stem = os.path.splitext(raw_filename)[0]
             ok, res, err = results_map[filepath]
 
-            meta = (
+            meta = None
+            name_candidate = (
                 meta_by_name.get(raw_filename)
                 or meta_by_name.get(stem)
                 or meta_by_name.get(stem.lower())
             )
+            if name_candidate:
+                if ok and res:
+                    vh_st, vh_msg = check_seq_compatibility(res.get('VH', ''), name_candidate.get('VH', ''))
+                    if vh_st == 'MISMATCH':
+                        warn_msg = f"[WARNING] {stem}: ref_csv name matched '{name_candidate.get('Filename')}' but failed sequence check (VHH {vh_msg}); metadata rejected."
+                        print(warn_msg, file=sys.stderr, flush=True)
+                        strict_ref_errors.append(warn_msg)
+                        meta = None
+                    else:
+                        if vh_st == 'TRIMMED':
+                            print(f"[INFO] {stem}: ref_csv matched '{name_candidate.get('Filename')}' with VHH {vh_msg}", flush=True)
+                        meta = name_candidate
+                else:
+                    meta = name_candidate
+
             if not meta and ok and res:
-                meta = meta_by_seq.get(res.get('VH', '').upper())
+                seq_key = _clean_aa(res.get('VH', ''))
+                seq_candidates = meta_by_seq.get(seq_key, [])
+                if len(seq_candidates) == 1:
+                    meta = seq_candidates[0]
+                elif len(seq_candidates) > 1:
+                    dup_names = ", ".join(c.get('Filename', '?') for c in seq_candidates)
+                    print(f"[WARNING] {stem}: sequence fallback matched multiple ref_csv entries ({dup_names}); skipping ambiguous metadata merge.", file=sys.stderr, flush=True)
+
             meta = meta or {}
             out_name = meta.get('Filename') or stem
 
@@ -641,6 +810,9 @@ def main():
 
     print(f"[TNP 2025 Batch] Completed! SUCCESS: {success_count}, FAILED: {fail_count}")
     print(f"[TNP 2025 Batch] Output saved to: {os.path.abspath(args.output)}")
+    if args.strict_ref and strict_ref_errors:
+        print(f"[ERROR] --strict_ref aborted with {len(strict_ref_errors)} sequence mismatch(es).", file=sys.stderr)
+        sys.exit(2)
 
 
 if __name__ == "__main__":

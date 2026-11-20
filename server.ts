@@ -6,8 +6,11 @@ import axios from "axios";
 import { getGuidelines, syncGuidelines, saveGuidelines, resetGuidelines } from "./src/server/scraper";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
+import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import { Client as SshClient } from "ssh2";
+
+const serverDir = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const PORT = 3000;
@@ -253,9 +256,9 @@ const findScriptsDir = (): string => {
   const candidateDirs = [
     path.join(process.cwd(), 'src/server/scripts'),
     path.join(process.cwd(), 'server/scripts'),
-    path.join(__dirname, 'src/server/scripts'),
-    path.join(__dirname, 'server/scripts'),
-    path.join(__dirname, 'scripts'),
+    path.join(serverDir, 'src/server/scripts'),
+    path.join(serverDir, 'server/scripts'),
+    path.join(serverDir, 'scripts'),
     path.join(process.cwd(), 'scripts')
   ];
   for (const dir of candidateDirs) {
@@ -385,7 +388,7 @@ app.post('/api/reference/calibrate-ssh', async (req, res) => {
 app.post("/api/submit", async (req, res) => {
   try {
     const { 
-      remoteBasePath, condaProfile, ibEnv, psaBin,
+      remoteBasePath, condaProfile, ibEnv, psaBin, ptmRsaCutoff = 7.5,
       mode, projectId, zipPayload
     } = req.body;
     
@@ -474,12 +477,16 @@ app.post("/api/submit", async (req, res) => {
 ${envSetup}
 echo "Starting job for batch ${batchId}"
 `;
+      const psaFlag = psaBin ? ` --psa_bin "${psaBin}"` : '';
+      const rsaCutoffVal = Number(ptmRsaCutoff) || 7.5;
+      const profilerFlags = `--ptm_rsa_cutoff ${rsaCutoffVal}${psaFlag}`;
+
       if (mode === "fasta") {
         scriptContent += `python "${batchPath}/scripts/02_immunebuilder_submit_stage1.py" "${batchPath}/input" --output_dir "${batchPath}/result"
-python "${batchPath}/scripts/03_auto_profiler.py" "${batchPath}/result" "${batchPath}/result" "${batchPath}/scripts"
+python "${batchPath}/scripts/03_auto_profiler.py" "${batchPath}/result" "${batchPath}/result" "${batchPath}/scripts" ${profilerFlags}
 `;
       } else if (mode === "structure") {
-        scriptContent += `python "${batchPath}/scripts/03_auto_profiler.py" "${batchPath}/input" "${batchPath}/result" "${batchPath}/scripts"
+        scriptContent += `python "${batchPath}/scripts/03_auto_profiler.py" "${batchPath}/input" "${batchPath}/result" "${batchPath}/scripts" ${profilerFlags}
 `;
       }
       scriptContent += `rm -rf "${batchPath}/scripts"\n`;

@@ -564,8 +564,8 @@ function ZhDocContent({ activeSection }: { activeSection: DocSectionId }) {
                     • N-Glycosylation (N-X-S/T, X≠P)
                   </td>
                   <td className="p-3.5 text-stone-600">
-                    • Free Cys：d(Sγ, Sγ) &gt; 3.0 Å 未配对（任何位置）<br />
-                    • N-Glyc：位于激活的 CDR/FR 区（无论暴露或环区）
+                    • Free Cys：经 3D 1-to-1 链内/跨链二硫键配对（Sγ–Sγ ≤ 3.5 Å，或弛豫 Cβ–Cβ ≤ 5.0 Å 且 Sγ–Sγ ≤ 5.5 Å，缺 Sγ 时 Cβ–Cβ ≤ 4.8 Å，保守 23–104 结合 Cα–Cα ≤ 7.5 Å）后仍未配对（任何位置）<br />
+                    • N-Glyc：经零宽先行断言重叠扫描检出的 N-X-S/T（X≠P）位于激活的 CDR/FR 区（无论暴露或环区）
                   </td>
                   <td className="p-3.5 text-stone-600">游离巯基引发二硫键错配与共价二聚体；Fab 糖基化导致严重批次异质性与免疫原性，<strong>必须优先突变消除</strong>。</td>
                 </tr>
@@ -1046,7 +1046,7 @@ function EnDocContent({ activeSection }: { activeSection: DocSectionId }) {
                   <td className="p-3.5 font-bold text-rose-800">Tier 1 · Intolerable</td>
                   <td className="p-3.5"><span className="px-2.5 py-1 rounded-md font-bold bg-rose-600 text-white">RED</span></td>
                   <td className="p-3.5 font-mono">Unpaired Free Cys (C); N-Glycosylation (N-X-S/T, X≠P)</td>
-                  <td className="p-3.5 text-stone-600">Free Cys (d(Sγ, Sγ) &gt; 3.0 Å) anywhere; N-Glyc in active scope.</td>
+                  <td className="p-3.5 text-stone-600">Unpaired Free Cys after strict 1-to-1 intra/inter-chain 3D pairing (Sγ–Sγ ≤ 3.5 Å, or relaxed Cβ–Cβ ≤ 5.0 Å &amp; Sγ–Sγ ≤ 5.5 Å) anywhere; overlapping N-Glyc in active scope.</td>
                 </tr>
                 <tr>
                   <td className="p-3.5 font-bold text-rose-700">Tier 2 · High Risk</td>
