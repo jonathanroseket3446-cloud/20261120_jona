@@ -1,0 +1,6 @@
+{
+  "name": "Therapeutic Antibody Profiler_IB",
+  "description": "Therapeutic Antibody/Nanobody Profiler",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

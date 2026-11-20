@@ -1,0 +1,1122 @@
+Filename	Genetics
+Abagovomab	Murine
+Abazistobart	Chimeric and/or humanised
+Abciximab	Chimeric
+Abelacimab	Genetically human
+Abiprubart	Humanised
+Abituzumab	Humanised
+Abrezekimab	Humanised
+Abrilumab	Genetically human
+Acapatamab_1	Chimeric and/or humanised
+Acapatamab_2	Genetically human
+Acasunlimab_1	Humanised
+Acasunlimab_2	Humanised
+Acimtamig_1	Chimeric and/or humanised
+Acimtamig_2	Chimeric and/or humanised
+Acrixolimab	Genetically human
+Actoxumab	Genetically human
+Adakitug	Genetically human
+Adalimumab	Genetically human
+Adebrelimab	Chimeric and/or humanised
+Adecatumumab	Genetically human
+Adezkibart	Genetically human
+Adimanebart	Humanised
+Adintrevimab	Genetically human
+Aducanumab	Genetically human
+Afasevikumab	Genetically human
+Afimkibart	Genetically human
+Alacizumab	Humanised
+Alcestobart	Genetically human
+Aldastotug	Genetically human
+Alemtuzumab	Humanised
+Aletekitug	Humanised
+Alextatug	Genetically human
+Alirocumab	Genetically human
+Alnuctamab_1	Chimeric and/or humanised
+Alnuctamab_2	Chimeric and/or humanised
+Alomfilimab	Genetically human
+Alpitatug	Humanised
+Alsevalimab	Genetically human
+Amatuximab	Chimeric
+Amdokitug	Chimeric and/or humanised
+Amivantamab_1	Genetically human
+Amivantamab_2	Genetically human
+Amlenetug	Genetically human
+Amlitelimab	Genetically human
+Amostomig_1	Humanised
+Amostomig_2	Humanised
+Amrecibart	Genetically human
+Amtabafusp	Humanised
+Amubarvimab	Genetically human
+Amulirafusp	Chimeric
+Anbenitamab_1	Humanised
+Anbenitamab_2	Humanised
+Andecaliximab	Chimeric
+Anetumab	Genetically human
+Anifrolumab	Genetically human
+Anivovetmab	Chimeric
+Anrukinzumab	Humanised
+Anselamimab	Chimeric
+Ansipastobart	Genetically human
+Ansuvimab	Genetically human
+Anumigilimab	Genetically human
+Anzurstobart	Genetically human
+Apamistamab	Murine
+Apitegromab	Genetically human
+Aplitabart	Humanised
+Aprutumab	Genetically human
+Arcitumomab	Murine
+Armocibart	Chimeric and/or humanised
+Arumakimig_1	Genetically human
+Arumakimig_2	Genetically human
+Ascrinvacumab	Genetically human
+Aselizumab	Humanised
+Astegolimab	Genetically human
+Atenastobart	Genetically human
+Atezolizumab	Humanised
+Atibuclimab	Chimeric
+Atidortoxumab	Genetically human
+Atigotatug	Genetically human
+Atinumab	Genetically human
+Atisnolerbart	Genetically human
+Atoltivimab	Genetically human
+Avdoralimab	Genetically human
+Avelumab	Genetically human
+Avitotamig	Humanised
+Avizakimab	Humanised
+Axatilimab	Humanised
+Azerutamig_1	Genetically human
+Azerutamig_2	Genetically human
+Azintuxizumab	Chimeric and/or humanised
+Azirkitug	Humanised
+Bafisontamab_1	Humanised
+Bafisontamab_2	Genetically human
+Balertatug	Chimeric and/or humanised
+Balonkibart	Genetically human
+Balstilimab	Genetically human
+Bamlanivimab	Genetically human
+Bapineuzumab	Humanised
+Bapotulimab	Genetically human
+Barecetamab	Genetically human
+Barzolvolimab	Chimeric and/or humanised
+Basiliximab	Chimeric
+Batoclimab	Genetically human
+Bavituximab	Chimeric
+Bavunalimab_1	Chimeric and/or humanised
+Bavunalimab_2	Chimeric and/or humanised
+Bebtelovimab	Genetically human
+Becotatug	Humanised
+Bedinvetmab	Genetically canine
+Befovacimab	Genetically human
+Begelomab	Murine
+Belantamab	Humanised
+Belimumab	Genetically human
+Belrestotug	Genetically human
+Beludavimab	Genetically human
+Bemarituzumab	Humanised
+Bempikibart	Genetically human
+Benmelstobart	Humanised
+Benralizumab	Humanised
+Bentracimab	Genetically human
+Benufutamab	Chimeric
+Bepranemab	Humanised
+Berlimatoxumab	Genetically human
+Bermekimab	Genetically human
+Bersanlimab	Genetically human
+Besufetamig_1	Genetically human
+Besufetamig_2	Genetically human
+Betifisolimab	Chimeric and/or humanised
+Betinukibart	Humanised
+Bevacizumab	Humanised
+Bexatamig_1	Humanised
+Bexatamig_2	Humanised
+Bexmarilimab	Humanised
+Bezetabart	Genetically human
+Bezlotoxumab	Genetically human
+Bifikafusp	na
+Bimagrumab	Genetically human
+Bimekizumab	Humanised
+Birinkibart	Genetically human
+Birtamimab	Chimeric and/or humanised
+Bleselumab	Genetically human
+Blinatumomab_1	Murine
+Blinatumomab_2	Murine
+Blontuvetmab	Chimeric
+Blosozumab	Humanised
+Bococizumab	Humanised
+Bocunebart	Humanised
+Bosakitug	Humanised
+Boserolimab	na
+Botensilimab	Genetically human
+Brazikumab	Genetically human
+Bremzalerbart	Genetically human
+Brenetafusp	na
+Brentuximab	Chimeric
+Briakinumab	Genetically human
+Briquilimab	Chimeric and/or humanised
+Brivestobart	Humanised
+Brodalumab	Genetically human
+Brolucizumab	Humanised
+Brontictuzumab	Humanised
+Budigalimab	Chimeric and/or humanised
+Budoprutug	Chimeric and/or humanised
+Bulumtatug	Chimeric and/or humanised
+Burfiralimab	Humanised
+Burosumab	Genetically human
+Cabiralizumab	Humanised
+Cabotamig_1	Humanised
+Cabotamig_2	Humanised
+Cadonilimab_1	Chimeric and/or humanised
+Cadonilimab_2	Chimeric and/or humanised
+Cafelkibart	Humanised
+Calotatug	Genetically human
+Calpurbatug	Genetically human
+Camidanlumab	Genetically human
+Camoteskimab	Genetically human
+Camrelizumab	Humanised
+Canrivitug	Genetically human
+Cantuzumab	Humanised
+Carlumab	Genetically human
+Carotuximab	Chimeric
+Casdozokitug	Genetically human
+Cemavafusp	na
+Cemiplimab	Genetically human
+Cendakimab	Humanised
+Cenvacibart	Genetically human
+Cenzestotug	Chimeric and/or humanised
+Cepeprubart	Genetically human
+Cergutuzumab	Humanised
+Certolizumab	Humanised
+Cetrelimab	Genetically human
+Cetuximab	Chimeric
+Cevostamab_1	Chimeric and/or humanised
+Cevostamab_2	Genetically human
+Cibisatamab_2	Humanised
+Ciduvectamig_1	Genetically human
+Ciduvectamig_2	Genetically human
+Cifurtilimab	Genetically human
+Ciletatug	Humanised
+Cilgavimab	Genetically human
+Ciltistotug	Chimeric and/or humanised
+Cinpanemab	Genetically human
+Cirevetmab	Caninised
+Citatuzumab	na
+Cixutumumab	Genetically human
+Cizutamig_1	Humanised
+Cizutamig_2	Humanised
+Claseprubart	Genetically human
+Clazakizumab	Humanised
+Clervonafusp	na
+Clesitamig_1	Humanised
+Clesitamig_2	Humanised
+Clesrovimab	Genetically human
+Cliramitug	Genetically human
+Clivatuzumab	Humanised
+Cobolimab	Humanised
+Codrituzumab	Humanised
+Cofetuzumab	Humanised
+Coltuximab	Chimeric
+Comekibart	Humanised
+Conatumumab	Genetically human
+Concizumab	Humanised
+Coramitug	Chimeric
+Cosfroviximab	Chimeric
+Cosibelimab	Genetically human
+Crebankitug	Genetically human
+Crefmirlimab	Chimeric and/or humanised
+Crenezumab	Humanised
+Crexavibart	Genetically human
+Crizanlizumab	Humanised
+Crotedumab	Genetically human
+Crovalimab	Genetically human
+Crusekitug	Humanised
+Cudarolimab	Genetically human
+Cugrastomig_1	Genetically human
+Cugrastomig_2	Genetically human
+Cusatuzumab	Humanised
+Daclizumab	Humanised
+Dafsolimab	Murine
+Dalidnetug	Humanised
+Dalnicastobart	Genetically human
+Dalotuzumab	Humanised
+Dalutrafusp	na
+Danburstotug	Genetically human
+Danvilostomig_1	Genetically human
+Danvilostomig_2	Humanised
+Dapirolizumab	Humanised
+Daratumumab	Genetically human
+Daretabart	Chimeric and/or humanised
+Dargistotug	Genetically human
+Datopotamab	Humanised
+Davutamig_1	Genetically human
+Davutamig_2	Genetically human
+Daxdilimab	Genetically human
+Dazukibart	Humanised
+Dectrekumab	Genetically human
+Delpacibart	Humanised
+Demcizumab	Humanised
+Demupitamab	Genetically human
+Denecimig_1	Genetically human
+Denecimig_2	Genetically human
+Denikitug	Humanised
+Denintuzumab	Humanised
+Denosumab	Genetically human
+Denrakibart	Genetically Human
+Depatuxizumab	Chimeric and/or humanised
+Depemokimab	Humanised
+Derlotuximab	Chimeric
+Devextinetug	Chimeric
+Dezamizumab	Humanised
+Dibotatug	Genetically human
+Dilpacimab_1	Humanised
+Dinutuximab	Chimeric
+Diridavumab	Genetically human
+Disitamab	Humanised
+Divozilimab	Chimeric and/or humanised
+Docaravimab	Murine
+Domagrozumab	Humanised
+Domvanalimab	Humanised
+Donanemab	Humanised
+Donitabart	Humanised
+Donzakimig1_1	Humanised
+Donzakimig1_2	Humanised
+Donzakimig2	Humanised
+Dostarlimab	Humanised
+Dovanvetmab	Felinised
+Dresbuxelimab	Humanised
+Drotokibart	Humanised
+Drozitumab	Genetically human
+Duligotuzumab	Humanised
+Dupilumab	Genetically human
+Durvalumab	Genetically human
+Dusigitumab	Genetically human
+Duvakitug	Genetically human
+Duvortuxizumab_1	Chimeric and/or humanised
+Duvortuxizumab_2	Chimeric and/or humanised
+Ebdarokimab	Humanised
+Eblasakimab	Genetically human
+Ebrasodebart	Genetically human
+Ebribafusp	Chimeric and/or humanised
+Ebronucimab	Genetically human
+Eciskafusp	na
+Ecleralimab	Genetically human
+Eclutatug	Humanised
+Ecromeximab	Chimeric
+Eculizumab	Humanised
+Edrecolomab	Murine
+Efalizumab	Genetically human
+Efungumab	Genetically human
+Eglatoprutug	Humanised
+Eldelumab	Genetically human
+Elegrobart	Chimeric and/or humanised
+Elezanumab	Humanised
+Elgemtumab	Genetically human
+Elotuzumab	Humanised
+Elranatamab_1	Genetically human
+Elranatamab_2	Humanised
+Eltivutabart	Genetically human
+Eltrekibart	Humanised
+Eluvixtamab_1	Chimeric and/or humanised
+Emactuzumab	Humanised
+Emapalumab	Genetically human
+Emerfetamab_1	Chimeric and/or humanised
+Emfizatamab1_1	Humanised
+Emfizatamab1_2	Genetically human
+Emfizatamab2_1	Genetically human
+Emfizatamab2_2	Humanised
+Emibetuzumab	Humanised
+Emicizumab_1	Humanised
+Emicizumab_2	Humanised
+Emiltatug	Genetically human
+Emirodatamab_1	Genetically human
+Empasiprubart	Humanised
+Emugrobart	Humanised
+Emunkitug	Humanised
+Enapotamab	Genetically human
+Enavatuzumab	Humanised
+Encelimab	Humanised
+Enfortumab	Genetically human
+Englumafusp	na
+Enibarcimab	Chimeric and/or humanised
+Enlonstobart	Genetically human
+Enoblituzumab	Humanised
+Enokizumab	Genetically human
+Enoticumab	Genetically human
+Ensituximab	Chimeric
+Enuzovimab	Genetically human
+Enzelkitug	Humanised
+Epacmarstobart	Chimeric and/or humanised
+Epcoritamab_1	Chimeric
+Epcoritamab_2	Genetically human
+Epratuzumab	Humanised
+Eptinezumab	Humanised
+Eramkafusp	Chimeric
+Erenumab	Genetically human
+Erlizumab	Humanised
+Ersodetug	Genetically human
+Erzotabart	Genetically human
+Etakafusp	Humanised
+Etalanetug	Humanised
+Etaracizumab	Humanised
+Etentamig_1	Genetically human
+Etentamig_2	Genetically human
+Etesevimab	Genetically human
+Etevritamab_1	Genetically human
+Etigilimab	Humanised
+Etokimab	Humanised
+Etrolizumab	Humanised
+Etuptamig_1	Genetically human
+Etuptamig_2	Chimeric and/or humanised
+Eurestobart	Humanised
+Evalstotug	Genetically human
+Evinacumab	Genetically human
+Evolocumab	Genetically human
+Evunzekibart	Genetically human
+Exbivirumab	Genetically human
+Exerenibart	Genetically human
+Exidavnemab	Chimeric and/or humanised
+Exlinkibart	Humanised
+Ezabenlimab	Humanised
+Falbikitug	Humanised
+Fanastomig_1	Chimeric and/or humanised
+Fanastomig_2	Chimeric and/or humanised
+Faricimab_1	Humanised
+Faricimab_2	Genetically human
+Farletuzumab	Humanised
+Fasinumab	Genetically human
+Favezelimab	Humanised
+Fazpilodemab_1	Chimeric and/or humanised
+Fazpilodemab_2	Genetically human
+Feladilimab	Humanised
+Felzartamab	Humanised
+Fepixnebart	Humanised
+Fezakinumab	Genetically human
+Fianlimab	Genetically human
+Ficlatuzumab	Humanised
+Fidasimtamab_1	Genetically human
+Figitumumab	Genetically human
+Finotonlimab	Chimeric and/or humanised
+Firastotug	Humanised
+Firivumab	Genetically human
+Firsekibart	Genetically human
+Fiztasovimab	Genetically human
+Flanvotumab	Genetically human
+Fletikumab	Genetically human
+Flotetuzumab_1	Humanised
+Flotetuzumab_2	Humanised
+Fontolizumab	Humanised
+Foralumab	Genetically human
+Foravirumab	Genetically human
+Forimtamig_1	Humanised
+Forimtamig_2	Humanised
+Fremanezumab	Humanised
+Freneslerbart	Genetically human
+Fresolimumab	Genetically human
+Frexalimab	Chimeric and/or humanised
+Frovocimab	Humanised
+Frunevetmab	na
+Fulranumab	Genetically human
+Futermestotug	Humanised
+Futuximab	Chimeric
+Galcanezumab	Humanised
+Galegenimab	Humanised
+Galiximab	Chimeric
+Gancotamab	Genetically human
+Ganitumab	Genetically human
+Gantenerumab	Genetically human
+Garadacimab	Genetically human
+Garetatug	Humanised
+Garetosmab	Genetically human
+Garivulimab	Humanised
+Gatipotuzumab	Humanised
+Gatralimab	Humanised
+Gedivumab	Genetically human
+Gemtuzumab	Humanised
+Geptanolimab	Chimeric and/or humanised
+Gevokizumab	Humanised
+Giloralimab	Chimeric and/or humanised
+Gilvetmab	na
+Gimistotug	Humanised
+Gimsilumab	Genetically human
+Ginisortamab	Genetically human
+Girentuximab	Chimeric
+Givastomig_1	Humanised
+Givastomig_2	Humanised
+Glembatumumab	Genetically human
+Glenzocimab	Humanised
+Glofitamab_2	Chimeric and/or Humanised
+Gocatamig1_1	Humanised
+Golimumab	Genetically human
+Golocdacimab	Genetically human
+Gorivitug	Genetically human
+Gosuranemab	Chimeric and/or humanised
+Gotistobart	Genetically human
+Gremubamab_1	Humanised
+Gremubamab_2	Humanised
+Gresonitamab_1	Genetically human
+Greziprubart	Genetically human
+Grisnilimab	Murine
+Gruticibart	Chimeric and/or humanised
+Gulgafafusp	na
+Gumokimab	Chimeric and/or humanised
+Guselkumab	Genetically human
+Ianalumab	Genetically human
+Ibalizumab	Humanised
+Ibentatug	Chimeric and/or humanised
+Ibramvibart	Genetically human
+Ibritumomab	Murine
+Icrucumab	Genetically human
+Idactamab	Genetically human
+Idarucizumab	Humanised
+Ieramilimab	Humanised
+Ifabotuzumab	Humanised
+Ifinatamab	Humanised
+Iladatuzumab	Humanised
+Iluzanebart	Genetically human
+Imalumab	Genetically human
+Imaprelimab	Humanised
+Imeroprubart	Genetically human
+Imgatuzumab	Humanised
+Imneskibart	Humanised
+Imsidolimab	Chimeric and/or humanised
+Imvotamab_1	Chimeric and/or humanised
+Imvotamab_2	Genetically human
+Imzokitug	Humanised
+Inclacumab	Genetically human
+Indatuximab	Chimeric
+Indematug	Genetically human
+Indenebart	Genetically human
+Indusatumab	Genetically human
+Inebilizumab	Humanised
+Inezetamab_1	Genetically human
+Inezetamab_2	Genetically human
+Infliximab	Chimeric
+Ingitamig_2	Genetically human
+Inlecitug	Chimeric
+Inotuzumab	Humanised
+Intetumumab	Genetically human
+Invikafusp	Humanised
+Iparomlimab	Chimeric and/or humanised
+Iratumumab	Genetically human
+Isatuximab	Chimeric
+Iscalimab	Genetically human
+Ispectamab	Humanised
+Istiratumab_1	Genetically human
+Istiratumab_2	Genetically human
+Isuventatug	Chimeric and/or humanised
+Itanistomig_1	Genetically human
+Itanistomig_2	Humanised
+Itepekimab	Genetically human
+Itolizumab	Humanised
+Ivicentamab_1	Humanised
+Ivicentamab_2	Humanised
+Ivuxolimab	Genetically human
+Ixekizumab	Humanised
+Ixotatug	Chimeric and/or humanised
+Izalontamab_1	Chimeric
+Izalontamab_2	Chimeric
+Izastobart	Genetically human
+Izeltabart	Humanised
+Izenivetmab	Caninised
+Izuralimab_1	Genetically human
+Izuralimab_2	Chimeric and/or humanised
+Labetuzumab	Humanised
+Lacnotuzumab	Humanised
+Lacutamab	Chimeric and/or humanised
+Ladiratuzumab	Humanised
+Lampalizumab	Humanised
+Lanadelumab	Genetically human
+Lancastotug	Humanised
+Landogrozumab	Humanised
+Lanerkitug	Genetically human
+Laprituximab	Chimeric
+Larcaviximab	Chimeric
+Lasrekibart	Humanised
+Latikafusp	na
+Latozinemab	Genetically human
+Laventatug	Humanised
+Lebrikizumab	Humanised
+Lecanemab	Chimeric and/or humanised
+Lecankitug	Humanised
+Lemalesomab	Murine
+Lemzoparlimab	Genetically human
+Lenvervimab	Humanised
+Lenzilumab	Genetically human
+Lepunafusp	na
+Lerdelimumab	Genetically human
+Leronlimab	Humanised
+Lesabelimab	Genetically human
+Lesofavumab	Genetically human
+Letaplimab	Genetically human
+Levilimab	Chimeric and/or humanised
+Lexatumumab	Genetically human
+Libevitug	Genetically human
+Libivirumab	Genetically human
+Licaminlimab	Humanised
+Lifastuzumab	Humanised
+Ligelizumab	Humanised
+Ligufalimab	Chimeric and/or humanised
+Lilotomab	Murine
+Linavonkibart	Genetically human
+Linclatamig_1	Humanised
+Linclatamig_2	Humanised
+Lintuzumab	Humanised
+Linvoseltamab_1	Genetically human
+Linvoseltamab_2	Genetically human
+Lipustobart	Humanised
+Lirentelimab	Humanised
+Lirilumab	Genetically human
+Litifilimab	Humanised
+Livmoniplimab	Humanised
+Lodapolimab	Genetically human
+Lodelcizumab	Humanised
+Lokivetmab	na
+Lomtegovimab	Genetically human
+Lomvastomig_2	Humanised
+Loncastuximab	Chimeric
+Lonigutamab	Humanised
+Lorigerlimab_1	Chimeric
+Lorigerlimab_2	Genetically human
+Lorukafusp	na
+Lorvotuzumab	Humanised
+Losatuxizumab	Chimeric and/or humanised
+Lotivibart	Genetically human
+Lumiliximab	Chimeric
+Lumistobart	Humanised
+Lumretuzumab	Humanised
+Lumrotatug	Humanised
+Lunaxafusp	na
+Lunlekitug	Genetically human
+Lupartumab	Genetically human
+Lusvertikimab	Humanised
+Lutikizumab_1	Humanised
+Luvagrobart	Humanised
+Luveltamab	Humanised
+Maftivimab	Genetically human
+Magrolimab	Chimeric and/or humanised
+Manfidokimab	Humanised
+Margetuximab	Chimeric
+Maridebart	Genetically human
+Marlotamig_1	Genetically human
+Marlotamig_2	Genetically human
+Marstacimab	Genetically human
+Masavibart	Genetically human
+Matuzumab	Humanised
+Mavrilimumab	Genetically human
+Mavrostobart	Chimeric and/or humanised
+Mazorelvimab	Chimeric and/or humanised
+Mecbotamab	Humanised
+Melredableukin	na
+Melrilimab	Genetically human
+Mepolizumab	Humanised
+Metelimumab	Genetically human
+Mevonlerbart	Genetically human
+Mezagitamab	Humanised
+Mibavademab	Genetically human
+Micvotabart	Genetically human
+Milatuzumab	Humanised
+Mipasetamab	Humanised
+Mipletamig_1	Genetically human
+Mipletamig_2	Humanised
+Miptenalimab	Chimeric and/or humanised
+Mirikizumab	Humanised
+Miromavimab	Murine
+Mirvetuximab	Chimeric
+Mirzotamab	Chimeric
+Misitatug	Humanised
+Mitazalimab	Humanised
+Modakafusp	na
+Modotuximab	Chimeric
+Moflerafusp	Genetically human
+Mogamulizumab	Humanised
+Monalizumab	Humanised
+Mosunetuzumab_1	Humanised
+Mosunetuzumab_2	Humanised
+Motavizumab	Humanised
+Moxetumomab	Murine
+Mozistobart	Humanised
+Mupadolimab	Humanised
+Murlentamab	Humanised
+Muromonab	Murine
+Nadecnemab	Genetically human
+Nadunolimab	Humanised
+Namilumab	Genetically human
+Naptumomab	Murine
+Naratuximab	Chimeric
+Narnatumab	Genetically human
+Narsoplimab	Genetically human
+Natalizumab	Humanised
+Navenibart	Humanised
+Navicixizumab_1	Chimeric and/or humanised
+Navicixizumab_2	Chimeric and/or humanised
+Navivumab	Genetically human
+Naxitamab	Chimeric and/or humanised
+Nebokitug	Chimeric and/or humanised
+Nebratamig1_2	Humanised
+Nebratamig2_1	Humanised
+Necitumumab	Genetically human
+Negalstobart	Genetically human
+Nelistotug	Genetically human
+Nelmastobart	Humanised
+Nemolizumab	Humanised
+Nepuvibart	Genetically human
+Nesvacumab	Genetically human
+Netakimab	Chimeric
+Nezastomig_1	Genetically human
+Nezutatug	Humanised
+Nimacimab	Humanised
+Nimotuzumab	Humanised
+Nipocalimab	Genetically human
+Nirsevimab	Genetically human
+Nisevokitug	Genetically human
+Nivatrotamab_2	Chimeric and/or humanised
+Nivisnebart	Genetically human
+Nivolumab	Genetically human
+Nofazinlimab	Humanised
+Nolavetbart	na
+Nurulimab	Genetically human
+Nuvustotug	Genetically human
+Oberotatug	Genetically human
+Obertamig_2	Genetically human
+Obexelimab	Chimeric and/or humanised
+Obiltoxaximab	Chimeric
+Obrixtamig_1	Genetically human
+Ocankitug	Humanised
+Ocaratuzumab	Humanised
+Ociperlimab	Humanised
+Odesivimab	Genetically human
+Odronextamab_1	Genetically human
+Odronextamab_2	Genetically human
+Ofatumumab	Genetically human
+Ogalvibart	Genetically human
+Olaratumab	Genetically human
+Oleclumab	Genetically human
+Olendalizumab	Humanised
+Olintatug	Chimeric and/or humanised
+Olinvacimab	Genetically human
+Oloctinebart	Humanised
+Olokizumab	Humanised
+Omalizumab	Humanised
+Omburtamab	Murine
+Omectatug	Humanised
+Omodenbamab	Genetically human
+Omoprubart	Genetically human
+Ompekimig1_1	Genetically human
+Ompekimig1_2	Genetically human
+Ompekimig2	Genetically human
+Onartuzumab	Humanised
+Ongericimab	Humanised
+Ontamalimab	Genetically human
+Ontuxizumab	Chimeric and/or humanised
+Onvatilimab	Genetically human
+Opamistomig_1	Humanised
+Opamistomig_2	Genetically human
+Opelkibart	Genetically human
+Opicinumab	Genetically human
+Opucolimab	Genetically human
+Opugotamig_2	Humanised
+Ordesekimab	Genetically human
+Orilanolimab	Chimeric and/or humanised
+Ormutivimab	Genetically human
+Orticumab	Genetically human
+Osemitamab	Humanised
+Osocimab	Genetically human
+Otelixizumab	Chimeric and/or humanised
+Otilimab	Genetically human
+Otlertuzumab	Humanised
+Oturkibart	Humanised
+Oxelumab	Genetically human
+Ozanezumab	Humanised
+Ozureprubart	Humanised
+Ozuriftamab	Chimeric and/or humanised
+Pabinafusp	na
+Pacanalotamab_1	Genetically human
+Pacibekitug	Genetically human
+Pacmilimab	Genetically human
+Palivizumab	Humanised
+Pamlectabart	Humanised
+Pamrevlumab	Genetically human
+Pamvatamig_1	Genetically human
+Pamvatamig_2	Genetically human
+Panobacumab	Genetically human
+Paridiprubart	Humanised
+Parsatuzumab	Humanised
+Pasotuxizumab_1	Chimeric and/or humanised
+Pasritamig_1	Genetically human
+Pasritamig_2	Humanised
+Patecibart	Humanised
+Pateclizumab	Humanised
+Patritumab	Genetically human
+Pavurutamab_1	Chimeric and/or humanised
+Pegrizeprument	Humanised
+Pelgifatamab	Genetically human
+Peluntamig_1	Humanised
+Peluntamig_2	Humanised
+Pembrolizumab	Humanised
+Pemivibart	Genetically human
+Pepinemab	Chimeric and/or humanised
+Perakizumab	Humanised
+Perenostobart	Genetically human
+Peresolimab	Humanised
+Pertuzumab	Humanised
+Petosemtamab_1	Genetically human
+Petosemtamab_2	Genetically human
+Pexelizumab	Humanised
+Picankibart	Humanised
+Pidilizumab	Humanised
+Pimivalimab	Genetically human
+Pimurutamab	Humanised
+Pinatuzumab	Humanised
+Pivekimab	Chimeric and/or humanised
+Plamotamab_1	Chimeric and/or humanised
+Plamotamab_2	Chimeric and/or humanised
+Plonmarlimab	Humanised
+Plozalizumab	Humanised
+Plutavimab	Genetically human
+Polzastobart	Humanised
+Ponezumab	Humanised
+Ponsegromab	Genetically human
+Porgaviximab	Chimeric
+Posdinemab	Humanised
+Potravitug	Genetically human
+Pozelimab	Genetically human
+Pradusinstobart	Humanised
+Prafnosbart	Humanised
+Praluzatamab	Humanised
+Prasinezumab	Humanised
+Precemtabart	Genetically human
+Prezalumab	Genetically human
+Pritoxaximab	Chimeric
+Pritumumab	Genetically human
+Prolgolimab	Chimeric and/or humanised
+Pucotenlimab	Chimeric and/or humanised
+Pulocimab	Genetically human
+Puxitatug	Genetically human
+Quavonlimab	Humanised
+Quetmolimab	Chimeric and/or humanised
+Quilizumab	Humanised
+Quisovalimab	Genetically human
+Racotumomab	Murine
+Rademikibart	Genetically human
+Ragifilimab	Humanised
+Ragistomig_1	Humanised
+Ralpancizumab	Humanised
+Raludotatug	Humanised
+Ralzapastotug	Humanised
+Ramantamig1_2	Genetically human
+Ramantamig2	Genetically human
+Ramucirumab	Genetically human
+Ranevetmab	Caninised
+Rapaprutug	Genetically human
+Ravagalimab	Humanised
+Ravulizumab	Humanised
+Recaticimab	Chimeric and/or humanised
+Recibokibart	Humanised
+Refanezumab	Humanised
+Reflocibart	Humanised
+Regdanvimab	Genetically human
+Relatlimab	Genetically human
+Relfovetmab	Felinised
+Remternetug	Genetically human
+Remtolumab_2	Genetically human
+Remzistotug	Humanised
+Renvistobart	Genetically human
+Reozalimab_1	Genetically human
+Reslizumab	Humanised
+Resugosbart	Chimeric and/or humanised
+Retavibart	Genetically human
+Revdofilimab	Chimeric and/or humanised
+Rezetamig_1	Genetically human
+Rezetamig_2	Genetically human
+Rezorstobart	Genetically human
+Riliprubart	Chimeric and/or humanised
+Rilogrotug	Humanised
+Rilotumumab	Genetically human
+Rilvegostomig_1	Humanised
+Rilvegostomig_2	Humanised
+Rinatabart	Genetically human
+Rinucumab	Genetically human
+Risankizumab	Humanised
+Rivabazumab	Humanised
+Robatumumab	Genetically human
+Rocatinlimab	Genetically human
+Roconkibart	Chimeric and/or humanised
+Roledumab	Genetically human
+Rolinsatamab	Chimeric and/or humanised
+Rolistobart	Humanised
+Romilkimab_1	Chimeric and/or humanised
+Romilkimab_2	Chimeric and/or humanised
+Romlusevimab	Genetically human
+Romosozumab	Humanised
+Rontalizumab	Humanised
+Rosmantuzumab	Humanised
+Rosnilimab	Humanised
+Rosopatamab	Chimeric and/or humanised
+Rovalpituzumab	Humanised
+Rovelizumab	Humanised
+Rozanolixizumab	Chimeric and/or humanised
+Rulonilimab	Chimeric and/or humanised
+Runimotamab_2	Chimeric and/or humanised
+Ruplizumab	Humanised
+Ruxoprubart	Chimeric and/or humanised
+Ruzaltatug	Genetically human
+Sabatolimab	Humanised
+Sabestomig_2	Genetically human
+Sabirnetug	Humanised
+Sacituzumab	Humanised
+Safimestomig_1	Humanised
+Safimestomig_2	Humanised
+Samalizumab	Humanised
+Samatatug	Genetically human
+Samrotamab	Chimeric and/or humanised
+Sarilumab	Genetically human
+Sasanlimab	Humanised
+Satralizumab	Humanised
+Satumomab	Murine
+Secukinumab	Genetically human
+Semorinemab	Chimeric and/or humanised
+Semzuvolimab	Chimeric and/or humanised
+Seniprutug	Humanised
+Seribantumab	Genetically human
+Serplulimab	Humanised
+Setoxaximab	Chimeric
+Setrusumab	Genetically human
+Sibeprenlimab	Humanised
+Sifalimumab	Genetically human
+Sigvotatug	Humanised
+Silevimig_1	Genetically human
+Silevimig_2	Genetically human
+Siltartoxatug	Genetically human
+Siltuximab	Chimeric
+Simaravibart	Genetically human
+Simlukafusp	na
+Simridarlimab_1	Genetically human
+Simtuzumab	Humanised
+Sintilimab	Genetically human
+Sipavibart	Genetically human
+Sirexatamab	Humanised
+Sirtratumab	Genetically human
+Sirukumab	Genetically human
+Socazolimab	Genetically human
+Sofituzumab	Humanised
+Solabafusp	Genetically human
+Solanezumab	Humanised
+Solitomab_1	Murine
+Solitomab_2	Murine
+Solnerstotug	Humanised
+Solrikitug	Humanised
+Sonavibart	Genetically human
+Sonesitatug	Humanised
+Sotevtamab	Humanised
+Sotiburafusp	na
+Sotigalimab	Humanised
+Spartalizumab	Humanised
+Spesolimab	Humanised
+Spevatamig_1	Genetically human
+Spevatamig_2	Humanised
+Stamulumab	Genetically human
+Stapokibart	Humanised
+Suciraslimab	Chimeric
+Sudubrilimab	Genetically human
+Sugemalimab	Genetically human
+Suptavumab	Genetically human
+Surzebiclimab	Genetically human
+Sutacimig_1	Humanised
+Sutacimig_2	Humanised
+Sutimlimab	Chimeric and/or humanised
+Suvemcitug	Humanised
+Suvizumab	Humanised
+Suvonstobart	Chimeric and/or humanised
+Suvratoxumab	Genetically human
+Tabalumab	Genetically human
+Tabirafusp	Genetically human
+Tabituximab	Chimeric
+Tacatuzumab	Humanised
+Tadocizumab	Humanised
+Tafolecimab	Genetically human
+Talacotuzumab	Humanised
+Talizumab	Humanised
+Talquetamab_1	Humanised
+Talquetamab_2	Chimeric
+Tamgiblimab	Genetically human
+Tamrintamab	Humanised
+Tamtuvetmab	Chimeric
+Tanezumab	Humanised
+Tanruprubart	Chimeric and/or humanised
+Tarextumab	Genetically human
+Tarlatamab_1	Genetically human
+Tavolimab	Chimeric and/or humanised
+Tebotelimab_2	Humanised
+Tecaginlimab_1	Humanised
+Teclistamab_1	Genetically human
+Tecotabart	Humanised
+Telazorlimab	Humanised
+Telikibart	Genetically human
+Telisotuzumab	Humanised
+Temelimab	Humanised
+Temtokibart	Humanised
+Tenatumomab	Murine
+Teneliximab	Chimeric
+Teplizumab	Humanised
+Tepoditamab_1	Genetically human
+Tepoditamab_2	Genetically human
+Teprotumumab	Genetically human
+Teropavimab	Genetically human
+Tesidolumab	Genetically human
+Tesnatilimab	Genetically human
+Tezepelumab	Genetically human
+Tibulizumab_2	Humanised
+Tidutamab_1	Genetically human
+Tidutamab_2	Chimeric and/or humanised
+Tifcemalimab	Chimeric and/or humanised
+Tilatamig_1	Genetically human
+Tilatamig_2	Genetically human
+Tilavonemab	Chimeric and/or humanised
+Tildrakizumab	Humanised
+Tilogotamab	Humanised
+Tilrekimig2	Genetically human
+Tilvestamab	Humanised
+Timcevibart	Genetically human
+Timolumab	Genetically human
+Tinurilimab	Humanised
+Tiragolumab	Genetically human
+Tirnovetmab	Caninised
+Tislelizumab	Humanised
+Tisotumab	Genetically human
+Tixagevimab	Genetically human
+Tixentamig_1	Chimeric and/or humanised
+Tixestobart	Genetically human
+Tizetatug	Humanised
+Tobemstomig_2	Humanised
+Tobevibart	Genetically human
+Tocilizumab	Humanised
+Tomaralimab	Chimeric and/or humanised
+Tomuzotuximab	Chimeric
+Toripalimab	Chimeric and/or humanised
+Torudokimab	Genetically human
+Torvutatug	Genetically human
+Tosatoxumab	Genetically human
+Tovecimig_2	Humanised
+Tovetumab	Genetically human
+Tozorakimab	Genetically human
+Trabikibart	Genetically human
+Tralokinumab	Genetically human
+Traxivitug	Genetically human
+Tregalizumab	Humanised
+Tremelimumab	Genetically human
+Trevogrumab	Genetically human
+Trevotamig_1	Humanised
+Trevotamig_2	Chimeric
+Trinbelimab	Genetically human
+Trontinemab_2	Humanised
+Trosunilimab	Humanised
+Trovostobart	Genetically human
+Tucotuzumab	Humanised
+Tulisokibart	Humanised
+Tuparstobart	Humanised
+Turenkibart	Humanised
+Tusamitamab	Chimeric and/or humanised
+Tuvonralimab	Genetically human
+Ubamatamab_1	Genetically human
+Ubamatamab_2	Genetically human
+Ubletamig_1	Genetically human
+Ublituximab	Chimeric
+Ucenprubart	Humanised
+Ulenistamab	Humanised
+Uliledlimab	Chimeric and/or humanised
+Ulocuplumab	Genetically human
+Ulviprubart	Humanised
+Umesolerbart	Genetically human
+Umikibart	Humanised
+Umizortamig1_2	na
+Umizortamig2_2	na
+Unasnemab	Chimeric and/or humanised
+Upanovimab	Chimeric and/or humanised
+Upinitatug	Chimeric and/or humanised
+Uprevstobart	Humanised
+Urabrelimab	Genetically human
+Urelumab	Genetically human
+Urtoxazumab	Humanised
+Usilnetug	Chimeric and/or humanised
+Ustekinumab	Genetically human
+Utomilumab	Genetically human
+Vadastuximab	Chimeric
+Valanafusp	na
+Vamikibart	Humanised
+Vandortuzumab	Humanised
+Vantictumab	Genetically human
+Vanucizumab_1	Humanised
+Varisacumab	Genetically human
+Varlilumab	Genetically human
+Varokibart	Genetically human
+Vatelizumab	Humanised
+Vebanvibart	Genetically human
+Vecantoxatug	Humanised
+Vedolizumab	Humanised
+Velaprumig_1	Chimeric and/or humanised
+Velinotamig_1	Genetically human
+Velinotamig_2	Genetically human
+Veltuzumab	Humanised
+Venanprubart	Humanised
+Vensobafusp	na
+Vepsitamab_1	Genetically human
+Verekitug	Genetically human
+Verzistobart	Genetically human
+Vesencumab	Genetically human
+Vibecotamab_1	Chimeric and/or humanised
+Vibostolimab	Humanised
+Vilamakitug	Genetically human
+Vilastobart	Humanised
+Vilobelimab	Chimeric
+Vipalanebart	Genetically human
+Vislarafusp	Genetically human
+Visugromab	Chimeric and/or humanised
+Vixarelimab	Genetically human
+Vixticibart	Genetically human
+Vixtimotamab_1	Chimeric and/or humanised
+Vixtimotamab_2	Genetically human
+Vobramitamab	Humanised
+Vofatamab	Genetically human
+Volagidemab	Genetically human
+Volociximab	Chimeric
+Vonlerolizumab	Humanised
+Vonsetamig_2	Genetically human
+Vopikitug	Genetically human
+Vopratelimab	Humanised
+Voxalatamab_1	Chimeric and/or humanised
+Vudalimab_1	Genetically human
+Vulinacimab	Genetically human
+Vunakizumab	Humanised
+Xaluritamig_1	Genetically human
+Xeligekimab	Genetically human
+Xentuzumab	Humanised
+Xirestomig_1	Genetically human
+Xirestomig_2	Genetically human
+Zadoprubart	Humanised
+Zagotenemab	Humanised
+Zalifrelimab	Genetically human
+Zaltenibart	Humanised
+Zamerovimab	Humanised
+Zampilimab	Chimeric and/or humanised
+Zamubafusp	Humanised
+Zanidatamab_1	Humanised
+Zanolimumab	Genetically human
+Zansecimab	Humanised
+Zeleciment	Chimeric and/or humanised
+Zelminemab	Humanised
+Zeluvalimab	Genetically human
+Zemocimig_1	Humanised
+Zemocimig_2	Humanised
+Zenocutuzumab_1	Humanised
+Zenocutuzumab_2	Humanised
+Zeripatamig_1	Genetically human
+Zeripatamig_2	Genetically human
+Zifibancimig_1	Genetically human
+Zigakibart	Humanised
+Zilovertamab	Humanised
+Ziltivekimab	Humanised
+Zimberelimab	Genetically human
+Zolbetuximab	Chimeric
+Zuberitamab	Chimeric
+Zubotamig_1	Genetically human
+Zubotamig_2	Humanised
